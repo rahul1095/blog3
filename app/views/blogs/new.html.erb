@@ -1,0 +1,24 @@
+
+  <%=form_for :blog, url:blogs_path do |f|%>
+<p>
+<%=f.label :title%>
+<%=f.text_field :title%>
+</p>
+<p>
+<%=f.label :description%>
+<%=f.text_field :description%>
+</p>
+
+<p>
+<%=f.label :image%>
+<%=f.file_field :image%>
+</p></br>
+<p>
+<%#= f.select :category_id, [['All', 1], ['Co', 2], ['Bought', 3], ['View', 4], ['Top API', 5]]  %>
+<%= f.select(:category_id, Category.all.collect {|u| [u.created_at, u.id]}, :prompt => 'Select Category') %>
+</p>
+<p>
+<%=f.submit %>
+</p>
+<%end%>
+<%= link_to 'Back', blogs_path %>
